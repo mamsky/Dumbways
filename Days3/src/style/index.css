@@ -67,3 +67,20 @@ img{
     border-radius: 10px;
     width: 100%;
 }
+
+@media screen and (max-width: 800px) {
+    .content-one{
+        width: 100%;
+    }
+    .content-two{
+        width: 100%;
+    }
+    .hero-content {
+        display: grid;
+        gap: 10px;
+    }
+    .content-two{
+        display: fixed;
+        justify-content: center;
+    }
+  }
