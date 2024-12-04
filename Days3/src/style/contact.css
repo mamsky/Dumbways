@@ -1,6 +1,7 @@
 body{
     /* background-color: rgb(235, 235, 233); */
     margin: 0;
+    height: 100vh;
     background-image: url("../assets/bg-cat.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -52,7 +53,7 @@ form{
     cursor: pointer;
 }
 
-.back-button{
+/* .back-button{
     position: absolute;
     background-color: blue;
     color:white;
@@ -62,4 +63,4 @@ form{
     border-radius: 10px;
     border: 1px solid black;
     padding: 10px 10px;
-}
+} */
