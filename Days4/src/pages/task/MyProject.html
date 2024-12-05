@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../style/navbar.css" />
+    <link rel="stylesheet" href="../../style/task/MyProject.css" />
+    <title>My Project</title>
+  </head>
+  <body>
+    <main>
+      <nav class="navbar">
+        <div class="nav-left">
+          <a href="#l">
+            <img
+              class="nav-logo"
+              src="../../assets/images/image.png"
+              alt="logo-navbar" />
+          </a>
+          <ul class="nav-ul">
+            <li>
+              <a href="../../../index.html" class="link">Home</a>
+            </li>
+            <li>
+              <a href="./blog.html" class="link-active">My Project</a>
+            </li>
+          </ul>
+        </div>
+        <div class="nav-right">
+          <a href="#">Contact Me</a>
+        </div>
+      </nav>
+
+      <section class="section-one">
+        <div class="container">
+          <div class="content">
+            <form class="form-input" onsubmit="submitForm(event)">
+              <h1>Add My Project</h1>
+              <!-- name  -->
+              <div class="form-fields">
+                <label for="name">Project Name</label>
+                <input
+                  class="form-input-fields"
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Masukkan Name.." />
+              </div>
+              <!-- end name  -->
+              <!-- grid  -->
+              <div class="grid-form">
+                <!-- 1  -->
+                <div>
+                  <div class="form-fields">
+                    <label for="startDate">Start Date</label>
+                    <input
+                      class="form-input-fields"
+                      type="date"
+                      id="startDate"
+                      name="startDate" />
+                  </div>
+                </div>
+                <!-- end 1  -->
+                <!-- 2  -->
+                <div>
+                  <div class="form-fields">
+                    <label for="endDate">End Date</label>
+                    <input
+                      class="form-input-fields"
+                      type="date"
+                      id="endDate"
+                      name="endDate" />
+                  </div>
+                </div>
+                <!-- end 2  -->
+              </div>
+              <!-- end grid  -->
+              <!-- text area  -->
+              <div class="form-fields">
+                <label for="description">Description</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  rows="5"
+                  class="form-input-fields"
+                  placeholder="Description"></textarea>
+              </div>
+              <!-- end text area  -->
+              <!-- teknologi  -->
+              <label style="font-weight: bold">Technologies</label>
+              <div class="grid-form">
+                <div>
+                  <input
+                    type="checkbox"
+                    id="nodejs"
+                    name="nodejs"
+                    value="nodejs" />
+                  <label for="nodejs"> Node Js</label>
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id="reactjs"
+                    name="reactjs"
+                    value="reactjs" />
+                  <label for="reactjs"> React Js</label>
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id="nextjs"
+                    name="nextjs"
+                    value="nextjs" />
+                  <label for="nextjs">Next Js</label>
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id="typescript"
+                    name="typescript"
+                    value="typescript" />
+                  <label for="typescript"> typescript</label>
+                </div>
+              </div>
+              <!-- Endteknologi  -->
+              <!-- image  -->
+              <div class="form-fields">
+                <label for="">Upload Images</label>
+                <input
+                  class="form-input-fields"
+                  type="file"
+                  hidden
+                  id="upload-images"
+                  name="upload-images" />
+                <label for="upload-images">
+                  <div class="label-form-image">
+                    <p class="label-p">Chose</p>
+                    <img src="../../assets/images/attach.png" alt="" />
+                  </div>
+                </label>
+              </div>
+              <!-- end image  -->
+              <!-- button  -->
+              <div class="btn-group">
+                <button type="submit" class="btn-submit">submit</button>
+              </div>
+              <!-- end button  -->
+            </form>
+          </div>
+        </div>
+      </section>
+      <section class="section-two">
+        <h1>MY PROJECT</h1>
+        <div class="content-two" id="listProject">
+          <div class="card">
+            <img src="../../assets/images/image.png" alt="" class="img-hero" />
+            <h2>First</h2>
+            <p>20/12/2024</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
+              vitae repellendus error dolor magni cupiditate fuga, temporibus
+              ipsum repellat tempora adipisci, laboriosam nam modi, quisquam
+              reprehenderit labore culpa totam sunt!
+            </p>
+            <img
+              src="../../assets/images/attach.png"
+              alt=""
+              class="img-techno" />
+            <img
+              src="../../assets/images/attach.png"
+              alt=""
+              class="img-techno" />
+            <img
+              src="../../assets/images/attach.png"
+              alt=""
+              class="img-techno" />
+            <div class="btn-section-two">
+              <button class="btn-edit">edit</button>
+              <button class="btn-delete">delete</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="../../js/task/myProject.js"></script>
+  </body>
+</html>
