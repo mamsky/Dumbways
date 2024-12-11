@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../style/navbar.css" />
     <link rel="stylesheet" href="../../style/task/MyProject.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
     <title>My Project</title>
   </head>
   <body>
     <main>
       <nav class="navbar">
         <div class="nav-left">
-          <a href="#l">
+          <a href="../../../index.html">
             <img
               class="nav-logo"
               src="../../assets/images/image.png"
@@ -22,17 +28,22 @@
               <a href="../../../index.html" class="link">Home</a>
             </li>
             <li>
-              <a href="./blog.html" class="link-active">My Project</a>
+              <a href="../../pages/blog.html" class="link">Blog</a>
+            </li>
+            <li>
+              <a href="./MyProject.html#my-project" class="link-active"
+                >My Project</a
+              >
             </li>
           </ul>
         </div>
         <div class="nav-right">
-          <a href="#">Contact Me</a>
+          <a href="../contact.html">Contact Me</a>
         </div>
       </nav>
 
       <section class="section-one">
-        <div class="container">
+        <div class="container" id="addProject">
           <div class="content">
             <form class="form-input" onsubmit="submitForm(event)">
               <h1>Add My Project</h1>
@@ -94,7 +105,7 @@
                     type="checkbox"
                     id="nodejs"
                     name="nodejs"
-                    value="nodejs" />
+                    value="NodeJs" />
                   <label for="nodejs"> Node Js</label>
                 </div>
                 <div>
@@ -102,7 +113,7 @@
                     type="checkbox"
                     id="reactjs"
                     name="reactjs"
-                    value="reactjs" />
+                    value="ReactJs" />
                   <label for="reactjs"> React Js</label>
                 </div>
                 <div>
@@ -110,7 +121,7 @@
                     type="checkbox"
                     id="nextjs"
                     name="nextjs"
-                    value="nextjs" />
+                    value="NextJs" />
                   <label for="nextjs">Next Js</label>
                 </div>
                 <div>
@@ -118,7 +129,7 @@
                     type="checkbox"
                     id="typescript"
                     name="typescript"
-                    value="typescript" />
+                    value="TypeScript" />
                   <label for="typescript"> typescript</label>
                 </div>
               </div>
@@ -149,31 +160,33 @@
           </div>
         </div>
       </section>
-      <section class="section-two">
+      <section class="section-two" id="my-project">
         <h1>MY PROJECT</h1>
+        <h1>
+          <a
+            href="#addProject"
+            style="
+              text-decoration: none;
+              border: 1px solid black;
+              padding: 4px 10px;
+              border-radius: 10px;
+              background: cyan;
+            "
+            >+</a
+          >
+        </h1>
         <div class="content-two" id="listProject">
           <div class="card">
             <img src="../../assets/images/image.png" alt="" class="img-hero" />
-            <h2>First</h2>
-            <p>20/12/2024</p>
+            <h2>Destroy Orange Cat</h2>
+            <p>20/12/2024 | Papoy</p>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
               vitae repellendus error dolor magni cupiditate fuga, temporibus
               ipsum repellat tempora adipisci, laboriosam nam modi, quisquam
               reprehenderit labore culpa totam sunt!
             </p>
-            <img
-              src="../../assets/images/attach.png"
-              alt=""
-              class="img-techno" />
-            <img
-              src="../../assets/images/attach.png"
-              alt=""
-              class="img-techno" />
-            <img
-              src="../../assets/images/attach.png"
-              alt=""
-              class="img-techno" />
+            <p>ReactJs, NodeJs</p>
             <div class="btn-section-two">
               <button class="btn-edit">edit</button>
               <button class="btn-delete">delete</button>

@@ -1,10 +1,13 @@
 var arr = [];
+
 let lcProject = JSON.parse(localStorage.getItem("project") || "[]");
+
 if (lcProject != []) {
   arr.push(...lcProject);
 } else {
   submitForm();
 }
+
 const submitForm = (e) => {
   e.preventDefault();
 
@@ -20,9 +23,7 @@ const submitForm = (e) => {
   }
 
   let imageUpload = document.getElementById("upload-images");
-
   let imagesInput = document.querySelector(`input[type=file]`);
-  console.log();
 
   if (name == "") {
     return alert("name input Tidak Boleh Kosong");
@@ -38,11 +39,7 @@ const submitForm = (e) => {
     return alert("Images input Tidak Boleh Kosong");
   }
 
-  //   if (description.length <= 80) {
-  //     return alert("description input minimal harus 50 huruf");
-  //   }
-  let images = URL.createObjectURL(imageUpload.files[0]);
-  console.log(images.name);
+  // let images = URL.createObjectURL(imageUpload.files[0]);
 
   let res = {
     author: name,
@@ -57,23 +54,34 @@ const submitForm = (e) => {
   alert("Berhasil");
 };
 
-// console.log("localStorage", lcProject.length);
-
 const getStorage = () => {
   let projectList = document.getElementById("listProject");
 
   for (let i = 0; i < lcProject.length; i++) {
-    console.log(lcProject[i].checBox[0]);
+    // console.log(lcProject[i].checBox);
+    let checkboxArr = [];
+    lcProject[i].checBox.forEach((b) => {
+      checkboxArr.push(b);
+    });
 
+    let dateStart = new Date(lcProject[i].startDate.replaceAll("-", "/"));
+    let dateend = new Date(lcProject[i].endDate.replaceAll("-", "/"));
+
+    let duration =
+      dateend.getMonth() -
+      dateStart.getMonth() +
+      12 * (dateend.getFullYear() - dateStart.getFullYear());
+
+    // console.log(duration);
     projectList.innerHTML += `
         <div id=${i} class="card">
         <img src="../../assets/images/${lcProject[i].images}" alt="" class="img-hero" />
         <h2>${lcProject[i].author}</h2>
-        <p>${lcProject[i].startDate} | Papoy </p>
+        <p>Durasi: ${duration} Bulan | Papoy </p>
         <p>
         ${lcProject[i].description}
         </p>
-        <p>${lcProject[i].checBox[0]}</p>
+          <p>${checkboxArr}</p>
         <div class="btn-section-two">
         <button class="btn-edit">edit</button>
         <button class="btn-delete">delete</button>
