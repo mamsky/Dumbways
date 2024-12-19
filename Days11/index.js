@@ -58,6 +58,10 @@ app.get('/test/:id/:lang', (req, res)=>{
 
 })
 
+app.get('*', (req, res)=>{
+  res.render('notfound')
+})
+
 app.listen(port, () => {
   console.log(`Running ${port}`)
 })
