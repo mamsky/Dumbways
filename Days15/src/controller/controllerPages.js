@@ -1,32 +1,47 @@
 let arrBelajar = [];
+let datas = [];
+
+const config = require("../config/config.json");
+const { Sequelize, QueryTypes } = require("sequelize");
+
+const sequelize = new Sequelize(config.development);
 
 const renderHome = (req, res) => {
   res.render("index");
 };
 
-let datas = [];
-const renderBlog = (req, res) => {
-  res.render("blog", { data: datas });
+const renderBlog = async (req, res) => {
+  const query = `SELECT * FROM public."Blogs"`;
+  const blog = await sequelize.query(query, { type: QueryTypes.SELECT });
+
+  res.render("blog", { data: blog });
 };
 
 const renderAddBlog = (req, res) => {
   res.render("add-blog");
 };
 
-const getDetailBlogId = (req, res) => {
-  const index = req.params.index;
+const getDetailBlogId = async (req, res) => {
+  const { id } = req.params;
 
-  res.render("detail-blog", { data: datas[index] });
+  const query = `SELECT * FROM public."Blogs" WHERE id = ${id}`;
+  const blog = await sequelize.query(query, { type: QueryTypes.SELECT });
+  console.log(blog);
+
+  res.render("detail-blog", { data: blog[0] });
 };
 
-const getBlogId = (req, res) => {
-  const index = req.params.index;
+const getBlogId = async (req, res) => {
+  const { id } = req.params;
+  const query = `SELECT * FROM public."Blogs" WHERE id = ${id}`;
+  const blog = await sequelize.query(query, { type: QueryTypes.SELECT });
+  console.log(blog);
 
-  res.render("edit-blog", { data: datas[index], index });
+  res.render("edit-blog", { data: blog[0] });
 };
 
-const editBlogWithId = (req, res) => {
-  const { index } = req.params;
+const editBlogWithId = async (req, res) => {
+  const { id } = req.params;
   const img = req.query.image;
 
   let { title, content, images } = req.body;
@@ -35,52 +50,40 @@ const editBlogWithId = (req, res) => {
     images = img;
   }
 
-  const fields = {
-    author: "Papoy",
-    title,
-    content,
-    images,
-    postedAt: new Date(),
-  };
-  datas[index] = fields;
+  const query = `UPDATE public."Blogs" SET title = :title, content = :content, image = :images WHERE id = ${id}`;
+  await sequelize.query(query, {
+    type: QueryTypes.UPDATE,
+    replacements: { title, content, images },
+  });
   res.redirect("/blog");
 };
 
-const deleteBlog = (req, res) => {
+const deleteBlog = async (req, res) => {
   const { index } = req.params;
-
-  datas.splice(index, 1);
+  const query = `DELETE FROM public."Blogs" WHERE id = ${index}`;
+  const blog = await sequelize.query(query, { type: QueryTypes.DELETE });
+  console.log(blog);
 
   res.redirect("/blog");
 };
 
-const addBlog = (req, res) => {
+const addBlog = async (req, res) => {
   const { title, content, images } = req.body;
+  try {
+    const query = `INSERT INTO public."Blogs" (title, content, image) VALUES ( :title, :content, :images)`;
+    await sequelize.query(query, {
+      type: QueryTypes.INSERT,
+      replacements: { title, content, images },
+    });
 
-  for (let i = 0; i < datas.length; i++) {
-    if (datas[i].title.includes(title)) {
-      return res.render("add-blog", {
-        data: datas,
-        message: "Title Tidak Boleh sama",
-      });
-    }
+    res.redirect("/blog");
+  } catch (error) {
+    console.log(error);
+    res.redirect("/add-blog");
   }
-
-  const fields = {
-    author: "Papoy",
-    title,
-    content,
-    images,
-    postedAt: new Date(),
-  };
-
-  datas.push(fields);
-
-  res.render("blog", { data: datas });
 };
 
 let arr = [];
-
 const renderMyproject = (req, res) => {
   let getlocalStorage = JSON.parse(localStorage.getItem("project") || "[]");
   if (arr == "") {
@@ -161,69 +164,6 @@ const testimonial = (req, res) => {
   res.render("testimonial");
 };
 
-//Fokus dari sini
-const testBelajar = (req, res) => {
-  res.render("testbelajar", { data: arrBelajar });
-};
-
-const testBelajarPost = (req, res) => {
-  const {
-    name,
-    startDate,
-    endDate,
-    description,
-    nodejs,
-    reactjs,
-    nextjs,
-    typescript,
-    images,
-  } = req.body;
-
-  let arrCb = []; // arr kosong
-  //kondisi jika nodeJs nya ada
-  if (nodejs) {
-    arrCb.push(nodejs); // masukkan data node js ke dalam array Check box
-  }
-  //kondisi jika reactjs nya ada
-  if (reactjs) {
-    arrCb.push(reactjs); // masukkan data reactjs ke dalam array Check box
-  }
-  if (nextjs) {
-    arrCb.push(nextjs);
-  }
-  if (typescript) {
-    arrCb.push(typescript);
-  }
-
-  const objData = {
-    name: name,
-    startDate: startDate,
-    endDate: endDate,
-    description: description,
-    technology: arrCb,
-    images: images,
-    postedAt: new Date(),
-  };
-
-  console.log(objData);
-
-  arrBelajar.push(objData);
-
-  res.redirect("testbelajar");
-};
-
-const testBelajarDelete = (req, res) => {
-  const { id } = req.params;
-
-  console.log(id);
-
-  arrBelajar.splice(id, 1);
-
-  res.render("testbelajar", { data: arrBelajar });
-};
-
-// Sampe Sini
-
 const notfound = (req, res) => {
   res.render("notfound");
 };
@@ -244,7 +184,4 @@ module.exports = {
   testimonial,
   notfound,
   addBlog,
-  testBelajar,
-  testBelajarPost,
-  testBelajarDelete,
 };

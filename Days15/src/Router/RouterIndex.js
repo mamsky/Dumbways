@@ -8,10 +8,11 @@ router.get("/", controllerPage.renderHome);
 router.get("/blog", controllerPage.renderBlog);
 router.get("/add-blog", controllerPage.renderAddBlog);
 router.post("/blog", controllerPage.addBlog);
-router.get("/detail-blog/:index", controllerPage.getDetailBlogId);
+router.get("/detail-blog/:id", controllerPage.getDetailBlogId);
 router.delete("/blog-delete/:index", controllerPage.deleteBlog);
-router.get("/edit-blog/:index", controllerPage.getBlogId);
-router.patch("/edit-blogs/:index", controllerPage.editBlogWithId);
+
+router.get("/edit-blog/:id", controllerPage.getBlogId);
+router.patch("/edit-blogs/:id", controllerPage.editBlogWithId);
 
 router.get("/MyProject", controllerPage.renderMyproject);
 router.post("/MyProject", controllerPage.postMyproject);
@@ -20,10 +21,6 @@ router.get("/project-detail/:index", controllerPage.renderDetailProject);
 
 router.get("/contact", controllerPage.contact);
 router.get("/testimonial", controllerPage.testimonial);
-
-router.get("/testbelajar", controllerPage.testBelajar);
-router.post("/testbelajar", controllerPage.testBelajarPost);
-router.delete("/testbelajar/:id", controllerPage.testBelajarDelete);
 
 router.get("*", controllerPage.notfound);
 
